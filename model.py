@@ -25,10 +25,6 @@ class RNNSearch(object):
         self.attention_size = attention_size
         self.bahdanau = None
         self.decoder_cell = None
-        self.projection_layer = core.Dense(self.targets.shape[2].value,
-                                           activation=None,
-                                           use_bias=True,
-                                           name='projection')
 
         self.inputs = tf.placeholder(dtype, shape=input_shape, name='inputs')
         # Training
@@ -43,6 +39,10 @@ class RNNSearch(object):
             self.train_op = None
 
         # Prediction
+        self.projection_layer = core.Dense(self.targets.shape[2].value,
+                                           activation=None,
+                                           use_bias=True,
+                                           name='projection')
         self.predictions = None
 
         # Finish building graph
